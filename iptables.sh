@@ -298,10 +298,26 @@ ip6tables -A INPUT -p tcp --dport 40110:40210 -j ACCEPT
 
 # Permite acesso externo à porta TCP/UDP 53 (DNS)
 # *Apenas ao operar um servidor DNS externo
-echo "-A INPUT -p tcp --dport 53 -j ACCEPT" >> $IPTABLES_CONFIG
-echo "-A INPUT -p udp --dport 53 -j ACCEPT" >> $IPTABLES_CONFIG
-ip6tables -A INPUT -p tcp --dport 53 -j ACCEPT
-ip6tables -A INPUT -p udp --dport 53 -j ACCEPT
+#echo "-A INPUT -p tcp --dport 53 -j ACCEPT" >> $IPTABLES_CONFIG
+#echo "-A INPUT -p udp --dport 53 -j ACCEPT" >> $IPTABLES_CONFIG
+#ip6tables -A INPUT -p tcp --dport 53 -j ACCEPT
+#ip6tables -A INPUT -p udp --dport 53 -j ACCEPT
+
+#Caso essas regras de dns não funcione no seu linux, comente essas e ative as de cima:
+echo " -A INPUT -p udp --dport 53 -m string --from 40 --algo bm --hex-string '|0000FF0001|' -m recent --set --name dnsanyquery" >> $IPTABLES_CONFIG
+echo " -A INPUT -p udp --dport 53 -m string --from 40 --algo bm --hex-string '|0000FF0001|' -m recent --name dnsanyquery --rcheck --seconds 60 --hitcount 3 -j DROP" >> $IPTABLES_CONFIG
+echo " -A INPUT -p tcp --dport 53 -m string --from 52 --algo bm --hex-string '|0000FF0001|' -m recent --set --name dnsanyquery" >> $IPTABLES_CONFIG
+echo " -A INPUT -p tcp --dport 53 -m string --from 52 --algo bm --hex-string '|0000FF0001|' -m recent --name dnsanyquery --rcheck --seconds 60 --hitcount 3 -j DROP" >> $IPTABLES_CONFIG
+
+echo " -N DNSAMPLY" >> $IPTABLES_CONFIG
+echo " -A DNSAMPLY -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT" >> $IPTABLES_CONFIG
+echo " -A DNSAMPLY -p udp -m hashlimit --hashlimit-srcmask 24 --hashlimit-mode srcip --hashlimit-upto 30/m --hashlimit-burst 10 --hashlimit-name DNSTHROTTLE --dport 53 -j ACCEPT" >> $IPTABLES_CONFIG
+echo " -A DNSAMPLY -p udp -m udp --dport 53 -j DROP" >> $IPTABLES_CONFIG
+
+ip6tables -N DNSAMPLY
+ip6tables -A DNSAMPLY -p udp -m state --state NEW -m udp --dport 53 -j ACCEPT
+ip6tables -A DNSAMPLY -p udp -m hashlimit --hashlimit-srcmask 24 --hashlimit-mode srcip --hashlimit-upto 30/m --hashlimit-burst 10 --hashlimit-name DNSTHROTTLE --dport 53 -j ACCEPT
+ip6tables -A DNSAMPLY -p udp -m udp --dport 53 -j DROP
 
 # Permite acesso externo à porta TCP 80 (HTTP)
 # *Apenas quando você publica o servidor web
