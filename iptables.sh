@@ -242,7 +242,7 @@ DROP_COUNTRY_MAKE(){
 IP_LIST=/root/cidr.txt
 CHK_IP_LIST=/root/IPLIST
 if [ ! -f $IP_LIST ]; then
-    wget -q https://github.com/nazamushiro/iptables-ubuntu/raw/main/cidr.txt.gz
+    wget -q https://github.com/lobo360/iptables-ubuntu/raw/main/cidr.txt.gz
     gunzip -c cidr.txt.gz > $IP_LIST
     rm -f cidr.txt.gz
 fi
