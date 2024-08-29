@@ -25,10 +25,10 @@ Como usar:
 Clone, Edite e Execute.
 
 	  % cd /root
-    % git clone https://github.com/lobo360/iptables-ubuntu
-    % vim iptables.sh
+          % git clone https://github.com/lobo360/iptables-ubuntu
+          % vim iptables.sh
 	  % chmod +x iptables.sh
-    % sudo ./root/iptables.sh
+          % sudo ./root/iptables.sh
 
 Até mais!
 
