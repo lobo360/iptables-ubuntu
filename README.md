@@ -16,9 +16,21 @@ O próprio daemon SSH: http://www.openssh.com/security.html
 
 Se você tiver sshd configurado com senhas fracas e alguém conseguir fazer força bruta, então exploits de escalonamento de privilégios locais podem ser tentados. O firewall normalmente não consegue capturar esse tipo de ataque, pois ele explora uma vulnerabilidade do aplicativo.
 
-A melhor maneira de se proteger contra isso é tomando medidas preventivas, como não usar senhas fracas, não expor o host à Internet, a menos que seja necessário, manter-se atualizado aplicando patches de software, mudar a porta do ssh, instalar o Fail2Ban, etc.
+A melhor maneira de se proteger contra isso é tomando medidas preventivas, como não usar senhas fracas, não expor o host à Internet, a menos que seja necessário, manter-se atualizado aplicando patches de software, mudar a porta do ssh, instalar o Fail2Ban, etc. Fazendo isso já vai dar uma boa segurança.
 
+iptables para Ubuntu Server Inspirado em "Vou revelar os iptables mais fortes de todos os tempos".
 
+Como usar:
+----
+Clone, Edite e Execute.
+
+	  $ cd /root
+    $ git clone https://github.com/lobo360/iptables-ubuntu
+    $ vim iptables/iptables.sh
+	  $ chmod +x /iptables/iptables.sh
+    $ sudo ./root/iptables.sh
+
+Até mais!
 
 
 
