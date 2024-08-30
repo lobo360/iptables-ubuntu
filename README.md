@@ -37,6 +37,9 @@ sudo ./root/iptables.sh
 Pronto.
 
 
+---
+
+
 Bom reserve um tempo para ler esse teste abaixo é interessante e pode clarear sua visão sobre os problemas relacionados com sua segurança.
 
 Exploits e Vulnerabilidades
@@ -81,16 +84,18 @@ Portanto, agora vamos a uma boa prática:
 
 12) Execute atualizações diariamente para que você obtenha correções de segurança prontamente, quando vulnerabilidades sérias forem descobertas. 
 
-13) Existe vulnerabilidades que são feitas a propósito pelo fabricante, tome cuidado com os navegadores que instala no computador, faça a instalação do navegador em uma conta de usuário com acesso restrito, os vírus não tem permissão para gravar, remova
+13) Existe vulnerabilidades que são feitas a propósito pelo fabricante, tome cuidado com os navegadores que instala no computador, faça a instalação do navegador em uma conta de usuário com acesso restrito, os vírus não tem permissão para gravar, remova a permissão de escrita e gravação das unidades de discos, apesar de você possuir um firewall em sua rede interna, você deve instalar um firewall na sua máquina windows, não está descartado a possibilidade de um atacante, implantar um backdoor, keylogger, tunnel ipv6, ou conexão vpn falsa.
 
-Que tal pensar no futuro da segurança! Crie o habito de procurar por falhas no kernel do Linux e do daemon SSH. Previna-se, proteja-se e ajude.
+14) Serviços de VPN ou PROXY não garante sua segurança, pelo contrário, pode virar um vetor de ataque, pois na conexão da vpn você sai de dentro da sua rede, você recebe um novo endereço de email, sua conexão pode ser monitorada, e suas senhas podem ser roubadas e sua comunicação interceptada.
+
+Que tal pensar no futuro da segurança! Crie o hábito de procurar por falhas no kernel do Linux e do daemon do SSH. Previna-se, proteja-se.
 
 Comece hoje mesmo dando uma olhada nessa falha do kernel:
 https://nsfocusglobal.com/pt-br/linux-kernel-privilege-escalation-vulnerability-cve-2024-1086-notice/
 
 Boas Fontes para manter-se informado: 
 https://www.exploit-db.com
-https://thehackernews.com (Telegram)
+https://thehackernews.com (Procure no Telegram: thehackernews)
 
 
 
