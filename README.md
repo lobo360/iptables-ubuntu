@@ -40,7 +40,7 @@ Pronto.
 ---
 
 
-Bom reserve um tempo para ler esse teste abaixo é interessante e pode clarear sua visão sobre os problemas relacionados com sua segurança.
+Bom reserve um tempo para ler esse teste abaixo é interessante e pode clarear sua visão sobre os problemas relacionados a segurança da informação.
 
 Exploits e Vulnerabilidades
 
