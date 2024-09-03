@@ -104,10 +104,36 @@ Portanto, agora vamos a uma boa prática:
 14) Serviços de VPN e PROXY não garante sua segurança, pelo contrário do que muita gente pode pensar, você pode virar um vetor de ataque, pois na conexão da vpn você sai de dentro da sua rede, e entra em outra rede, e seu firewall fica inútil, sua conexão pode ser monitorada, e seus dados podem ser interceptados, sempre antes de contratar uma vpn, verifique se a empresa é confiável.
 
 
+Bom agora vamos ao resumo geral:
+
+Este firewall é completamente seguro?
+
+Vamos supor que você gostaria de saber se há alguma falha/buraco nessa configuração de firewall. E que você queira bloquear o servidor o máximo possível para que seja impossível hackear. Os únicos serviços em execução serão openvpn e ssh.
+
+Não. Nenhum firewall é completamente seguro. Enquanto houver uma única porta aberta, você estará vulnerável a ataques.
+
+No entanto, é o mais seguro possível, dadas as circunstâncias.
+
+É bom ver que você está executando o SSH em uma porta diferente da padrão.
+
+Se o computador estiver conectado à Internet, ele não pode ser 100% inviolável. Se houver uma falha no OpenVPN, SSH, placa de rede ou processador, um invasor ainda poderá obter acesso por esses meios. E o firewall é tão forte quanto as senhas usadas nos protocolos que você passa por ele.
+
+Certifique-se de ter senhas realmente fortes. Melhor ainda - não confie apenas em senhas, mas confie em uma combinação de senha e chave, então se alguém conseguir sua senha, isso não vai fazer muito bem a você. E talvez restrinja de onde você está permitindo que as conexões com SSH e OpenVPN venham - interrompa quaisquer conexões de lugares como China, Coreia do Norte, Iran, etc.
+
+Você pode querer restringir os intervalos de ip, dos quais você pode alcançar ssh (e talvez openvpn). Certifique-se de adicionar pelo menos um intervalo, onde você sabe que terá acesso mesmo quando seu provedor troca a sub-rede da qual seu ip vem. Se você tiver outro servidor, adicione seu ip. Você pode até considerar permitir ssh somente de tal host.
+
+O ponto é que você não tem segurança perfeita, porque um sistema é tão seguro quanto seu componente mais fraco. Se ssh, openvpn, processador e placa de rede puderem ser comprometidos, alguém pode invadir seu servidor por esses meios, e se houver algo errado no código iptables/nftables, você pode ter pacotes escapando. Além disso, se openSSH e/ou openVPN estiverem usando criptografia muito fraca, as conexões também podem ser atacadas.
+
+Além disso, se você quiser melhorar ainda mais sua segurança, reconfigure o openSSH para usar autenticação de chave pública.
+
+Bem é isso por enquanto.
+
 Que tal pensar no futuro da segurança! Crie o hábito de procurar por falhas no kernel do Linux e do daemon do SSH. Previna-se, proteja-se.
 
 
 Comece hoje mesmo dando uma olhada nessa falha do kernel:
+
+
 https://nsfocusglobal.com/pt-br/linux-kernel-privilege-escalation-vulnerability-cve-2024-1086-notice/
 
 
